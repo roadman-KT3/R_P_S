@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/style.js" defer></script>
     <title>Rock, Paper, Scissors</title>
 </head>
-<body>    
-    <script src="js/index.js"></script>
+<body>
+    <div class="body">
+        <div class="buttons">
+            <button type="button" class="btn" id="rock">Rock</button>
+            <button type="button" class="btn" id="paper">Paper</button>
+            <button type="button" class="btn" id="scissors"> Scissors</button>
+        </div>
+        <div class="selection">
+            <pre id="playerSelection">Player Selects: </pre>
+            <pre id="computerSelection">Computer Selects: </pre>
+        </div>
+        <div id="results">
+            <p id="playerScore"> Player Score :</p>
+            <p id="computerScore"> Computer Score :</p>
+        </div>
+        <div>
+            <p class="text" id="output"> Your take!</p>
+        </div>
+    </div>    
 </body>
 </html>
 

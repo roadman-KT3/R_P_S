@@ -1,69 +1,98 @@
 // Rock, Paper, Scissors game
 
-function game(){
 
 
-// create a function getComputerChoice to return ‘rock’, ‘paper’, ‘scissors’ randomly. 
+if (typeof document !== 'undefined') {
+    // variables for the game.
+    let playerChoice;
+    let computerChoice;
+    let randomNumber = Math.floor((Math.random()*3));
+    let rock = 0;
+    let paper = 1;
+    let scissors = 2;
+    let results = document.getElementById("output");
+    let playerScore = 0;
+    let computerScore = 0;
+    let player = document.querySelector("#playerScore");
+    let computer = document.querySelector("#computerScore");
+    let noOfPlay = 5;
 
-function getComputerChoice () {
-	let rock = 0;
-	let paper = 1;
-	let scissors = 2;
-	let randomNumber = Math.floor((Math.random()*3))
-	switch (randomNumber) {
-			case rock:
-				return "rock";
-			case paper:
-				return "paper";
-			case scissors:
-				return "scissors";
-};
-  	
-}
 
-// a function that plays a single round of Rock Paper Scissors.
-// The function should take two parameters - the playerSelection and computerSelection
-//- and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-// Make your function’s playerSelection parameter case-insensitive 
-// (so users can input rock, ROCK, RocK or any other variation).
+    const buttons = document.querySelectorAll(".btn");
+    buttons.forEach((button) =>{button.addEventListener('click', () =>
+    {
+        playerChoice = document.getElementById("playerSelection");
+        playerChoice.textContent = `Player Selects: ${button.id}`; 
+        playRound(button.id, computerChoice);
+        //game();
+        
+        //playerChoice = button.id;
+    })});
 
+    switch (randomNumber) {
+        case rock:
+            computerChoice = "rock";
+        case paper:
+            computerChoice = "paper";
+        case scissors:
+            computerChoice = "scissors";
+        };
+              
+        //console.log(computerChoice);
+        computerSelect = document.getElementById("computerSelection");
+        computerSelect.textContent = `Computer Selects: ${computerChoice}`
+
+        
 function playRound(playerSelection, computerSelection) {
-  player = playerSelection.toLowerCase();
-  computerSelection = getComputerChoice();
-  let playerScore = 0;
-  let computerScore = 0;
+    
+    if (playerSelection === computerSelection) {
+        results.textContent = `It's a tie! you choose ${playerSelection} and computer choose ${computerSelection}`;
+    } else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
+        ) {
+            playerScore ++;
+            player.textContent = `Player Score: ${playerScore}`
+            computer.textContent = `Computer Score: ${computerScore}`
+            results.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+        } 
+        else {
+            computerScore ++;
+            player.textContent = `Player Score: ${playerScore}`
+            computer.textContent = `Computer Score: ${computerScore}`
+            results.textContent =`You Lose! ${computerSelection} beats ${playerSelection}`;
+        }
+    }
+    // if (playerScore === 5) {
+    //     results.textContent = 'Player wins!';
+    // } else if (computerScore === 5) {
+    //     results.textContent = 'Computer wins!';
+    // }
 
-  if (player === computerSelection) {
-    return "It's a tie!";
-  
-  } else if (
-    (player === 'rock' && computerSelection === 'scissors') ||
-    (player === 'paper' && computerSelection === 'rock') ||
-    (player === 'scissors' && computerSelection === 'paper')
-  ) {
-    playerScore += 1;
-    return `You Win! ${playerSelection} beats ${computerSelection}`;
-  } 
-  else {
-    computerScore +=1;
-    return `You Lose! ${computerSelection} beats ${playerSelection}`;
-  }
-}
+    
+     
+    
+    }
+    
+    
 
-//  a NEW function called game(). 
-// Use the previous function inside 
-// of this one to play a 5 round game that keeps score
-// and reports a winner or loser at the end.
-let noOfPlay = 5;
+// // // Display the results of the game
+// // const resultsDiv = document.querySelector('.results');
 
-for (let i = 0; i < noOfPlay; i++) {
-    let playerChoice = prompt("Your pick: \n ");
-    console.log(playRound(playerChoice, computerSelection));
-}
+// // function displayResults(message) {
+// //   message = game();
+// //   const p = document.createElement('p');
+// //   p.textContent = message;
+// //   resultsDiv.appendChild(p);
+// // }
 
-console.log("result: \n", playerScore, computerScore);
+// // // Replace all console.log statements with displayResults, for example:
 
-}
+// // displayResults(`Player: ${playerSelection} | Computer: ${computerSelection}`);
 
-game();
+// //  a NEW function called game(). 
+// // Use the previous function inside 
+// // of this one to play a 5 round game that keeps score
+// // and reports a winner or loser at the end.
 
